@@ -115,7 +115,7 @@ app.get('/api/users/:_id/logs', (req, res) => {
   }
 
   const user = users[userIndex];
-  const filteredExercises = exercises.filter((exercise) => {
+  let filteredExercises = exercises.filter((exercise) => {
     if (exercise._id != _id) return false;
     let isWithinDateRange = true;
 
