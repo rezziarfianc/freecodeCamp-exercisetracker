@@ -83,7 +83,7 @@ app.post('/api/users/:_id/exercises', urlencodedParser, (req, res) => {
   }
 
   const user = users[userIndex];
-  const newDate = new Date(date);
+  const newDate = date ? new Date(date) : 'invalid date' ;
 
   const exercise = {
     _id : user._id,
