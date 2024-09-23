@@ -45,6 +45,10 @@ app.get('/', (req, res) => {
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+app.get('/api/users', (req, res)=> {
+    res.json(users);
+});
+
 app.post('/api/users', urlencodedParser, (req, res) => {
   const { username } = req.body;
 
@@ -97,6 +101,7 @@ app.post('/api/users/:_id/exercises', urlencodedParser, (req, res) => {
 });
 
 
+
 app.get('/api/users/:_id/logs', (req, res) => {
 
   const { _id } = req.params;
@@ -108,8 +113,6 @@ app.get('/api/users/:_id/logs', (req, res) => {
       error : "user Not found"
     });
   }
-
-  console.log(exercises);
 
   const user = users[userIndex];
   const filteredExercises = exercises.filter((exercise) => {
@@ -142,6 +145,7 @@ app.get('/api/users/:_id/logs', (req, res) => {
 
   res.json({
     ...user,
+    count :filteredExercises.length,
     log : filteredExercises
   });
 })
